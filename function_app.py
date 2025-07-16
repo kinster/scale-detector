@@ -6,6 +6,7 @@ from ScaleDetector import extract_scale
 
 app = func.FunctionApp()
 
+@app.function_name(name="extractscale")
 @app.route(route="extractscale", auth_level=func.AuthLevel.ANONYMOUS)
 def ExtractScale(req: func.HttpRequest) -> func.HttpResponse:
     try:
