@@ -26,7 +26,7 @@ def ExtractScale(req: func.HttpRequest) -> func.HttpResponse:
         logging.info(f"Detected scale: {scale}")
         # ✅ Wrap the dict in HttpResponse
         return func.HttpResponse(
-            body=json.dumps({"scale": scale}),
+            body=json.dumps({"scaley": scale}),
             status_code=200,
             mimetype="application/json"
         )
