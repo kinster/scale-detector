@@ -4,7 +4,7 @@ import logging
 import azure.functions as func
 from ScaleDetector import extract_scale
 
-app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
 @app.function_name(name="extractscale")
 @app.route(route="extractscale", methods=["POST"])
