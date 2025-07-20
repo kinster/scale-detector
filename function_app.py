@@ -40,9 +40,9 @@ def ExtractScale(req: func.HttpRequest) -> func.HttpResponse:
 @app.function_name(name="blobtrigger")
 @app.blob_trigger(arg_name="blob",
                   path="pdf-images/{name}",
-                  connection="AZURE_STORAGE_CONNECTION_STRING")
+                  connection="AzureWebJobsStorage")
 def run_blob_trigger(blob: func.InputStream):
-    connect_string = os.environ["AZURE_STORAGE_CONNECTION_STRING"]
+    connect_string = os.environ["AzureWebJobsStorage"]
     logging.info(f"connect_string: {connect_string}")
     logging.info(f"Blob trigger fired for: {blob.name}")
     logging.info(f"Blob size: {blob.length} bytes")
