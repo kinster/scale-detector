@@ -5,7 +5,7 @@
     "version": "[4.*, 5.0.0)"
   },
   "logging": {
-    "fileLoggingMode": "debugOnly",
+    "fileLoggingMode": "always",
     "logLevel": {
       "default": "Warning",
       "Host.Aggregator": "Trace",
