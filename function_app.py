@@ -55,7 +55,9 @@ def run_blob_trigger(blob: func.InputStream):
     # Add your processing logic here
         # Process blob data (example)
     image = cv2.imdecode(np.frombuffer(blob_data, np.uint8), cv2.IMREAD_COLOR)
+    logging.info(f"Image shape: {image.shape if image is not None else 'None'}")
     if image is not None:
+        logging.info(f"start drawing lines on image: {blob.name}")
         from . import Drawing  # Assuming Drawing class is in another module
         drawer = Drawing(image)
         annotated_image = drawer.draw_lines([[100, 100, 200, 200]])  # Example
