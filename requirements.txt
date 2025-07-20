@@ -4,7 +4,7 @@
 
 azure-functions
 opencv-python==4.5.5.64
-numpy==1.19.5
+numpy
 azure-storage-blob
 MarkupSafe==3.0.2
 Werkzeug==3.1.3
