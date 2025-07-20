@@ -2,7 +2,10 @@
 # Ref: aka.ms/functions-azure-monitor-python 
 # azure-monitor-opentelemetry 
 
-azure-functions==1.23.0
+azure-functions
+opencv-python==4.5.5.64
+numpy==1.19.5
+azure-storage-blob
 MarkupSafe==3.0.2
 Werkzeug==3.1.3
 azure-cognitiveservices-vision-computervision==0.9.0
