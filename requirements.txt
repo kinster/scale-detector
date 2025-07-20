@@ -3,8 +3,8 @@
 # azure-monitor-opentelemetry 
 
 azure-functions
-opencv-python==4.5.5.64
-numpy
+opencv-python-headless==4.9.0.80
+numpy>=1.24.0,<2
 azure-storage-blob
 MarkupSafe==3.0.2
 Werkzeug==3.1.3

@@ -1,7 +1,11 @@
+import cv2
+import numpy as np
 import os
 import json
 import logging
 import azure.functions as func
+from azure.storage.blob import BlobServiceClient
+
 from ScaleDetector import extract_scale
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
@@ -49,3 +53,18 @@ def run_blob_trigger(blob: func.InputStream):
     blob_data = blob.read()
     
     # Add your processing logic here
+        # Process blob data (example)
+    image = cv2.imdecode(np.frombuffer(blob_data, np.uint8), cv2.IMREAD_COLOR)
+    if image is not None:
+        from . import Drawing  # Assuming Drawing class is in another module
+        drawer = Drawing(image)
+        annotated_image = drawer.draw_lines([[100, 100, 200, 200]])  # Example
+        _, img_encoded = cv2.imencode('.png', annotated_image)
+        # Save to output blob (e.g., 'pdf-images/annotated_{blob.name}')
+        blob_service_client = BlobServiceClient.from_connection_string(connect_string)
+        blob_client = blob_service_client.get_blob_client(container="pdf-images", blob=f"annotated_{blob.name}")
+        blob_client.upload_blob(img_encoded.tobytes(), overwrite=True)
+        logging.info(f"Annotated image saved as: annotated_{blob.name}")
+    else:
+        logging.error("Failed to decode image")
+
