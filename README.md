@@ -18,3 +18,10 @@ uvicorn app.main:app --reload --port 8000
 lsof -i :7071
 
 func azure functionapp publish scale-detector-func --python
+
+az storage blob upload \
+  --account-name devstoreaccount1 \
+  --container-name pdf-images \
+  --name plan.png \
+  --file images/plan.png \
+  --connection-string "UseDevelopmentStorage=true"
